@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/default :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+</head>
+<body>
+
+<section>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-3">
+                <div class="text-body mt-5">
+                    <h4><b>Please sign in</b></h4>
+                </div>
+                <form action="#" th:action="@{/login}" method="post">
+                    <div class="form-row">
+                        <label for="username"></label>
+                        <input class="form-control" type="text" id="username"
+                               name="j_username" placeholder="Login"
+                               required="" autofocus="autofocus"/>
+                    </div>
+                    <div class="form-row">
+                        <label for="password"></label>
+                        <input class="form-control" type="password" id="password"
+                               name="j_password" placeholder="Password"
+                               required=""/>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-1 btn-block">Sign in</button>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+</html>

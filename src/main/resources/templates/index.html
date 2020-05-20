@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<table>
+    <thead>
+    <tr bgcolor="#696969">
+        <th><b>Id</b></th>
+        <th><b>Login</b></th>
+        <th><b>Carma</b></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">id not found </td>
+        <td th:text="${user.login}">Login not found </td>
+        <td th:text="${user.carma}">Carma not found </td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="role : ${roles}">
+        <td th:text="${role.id}">id not found </td>
+        <td th:text="${role.roleName}">Role name not found </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>
