@@ -1,14 +1,16 @@
 package su.vvbubnov.JMSpringBoot.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import su.vvbubnov.JMSpringBoot.models.Role;
 import su.vvbubnov.JMSpringBoot.models.User;
 import su.vvbubnov.JMSpringBoot.services.RoleService;
 import su.vvbubnov.JMSpringBoot.services.UserService;
+import su.vvbubnov.JMSpringBoot.util.KostylService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/rest")
@@ -38,7 +40,13 @@ public class MainRestController {
 
     @PostMapping("/admin/addUser")
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        userServiceImpl.addUser(user, getRoleIds(user));
+        userServiceImpl.addUser(user, KostylService.getRoleIds(user));
+        return ResponseEntity.ok().body(user);
+    }
+
+    @PutMapping("/admin/edit/{id}")
+    public ResponseEntity<User> editUser(@RequestBody User user) {
+        userServiceImpl.editUser(user, KostylService.getRoleIds(user));
         return ResponseEntity.ok().body(user);
     }
 
@@ -48,27 +56,18 @@ public class MainRestController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/admin/edit/{id}")
-    public ResponseEntity<User> editUser(@RequestBody User user) {
-        userServiceImpl.editUser(user, getRoleIds(user));
-        return ResponseEntity.ok().body(user);
+    @GetMapping("/getPrincipal")
+    public User getPrincipal() {
+        return KostylService.getPrincipal();
     }
 
-    @GetMapping
-    public String hello() {
-        return "hello";
-    }
-
-    /**
-     * Костылирующий метод, возвращающий id ролей добавляемого/изменяемого
-     * пользователя. Возник из-за продолжительной борьбы с особенностями
-     * работы checkbox-ов. Возможно есть варианты избавиться от него...
-     * */
-    private List<Long> getRoleIds(User user) {
-        return user.getRoles()
+    @GetMapping("/isAdmin")
+    public boolean isAdmin() {
+        return KostylService.getPrincipal()
+                .getRoles()
                 .stream()
                 .map(Role::getId)
-                .collect(Collectors.toList());
+                .anyMatch(roleId -> roleId == 1);
     }
 
 }

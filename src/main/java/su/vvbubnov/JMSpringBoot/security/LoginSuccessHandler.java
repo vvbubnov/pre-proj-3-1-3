@@ -39,23 +39,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-//    private String getTargetUrl(Authentication authentication) {
-//        Map<String, String> urlByRole = new HashMap<>();
-//        urlByRole.put("ROLE_ADMIN", "/admin");
-//        urlByRole.put("ROLE_USER", "/user");
-//
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-//        for (GrantedAuthority authority : authorities) {
-//            String authorityName = authority.getAuthority();
-//            if (urlByRole.containsKey(authorityName)) {
-//                return urlByRole.get(authorityName);
-//            }
-//        }
-//
-//        System.out.println("++++++++++++++++++++++      NO ROLE FOR REDIRECT!!");
-//        return null;
-//    }
-
     protected void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {

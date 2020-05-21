@@ -28,6 +28,8 @@ public class MyRedirectHandler {
             return "/admin";
         } else if (authorities.contains("ROLE_USER")) {
             return "/user";
+        } else if (authorities.contains("ROLE_SCHOOLBOY")) {
+            return "/user";
         }
 
         System.out.println("\"++++++++++++++++++++++      NO ROLE FOR REDIRECT!!\"");

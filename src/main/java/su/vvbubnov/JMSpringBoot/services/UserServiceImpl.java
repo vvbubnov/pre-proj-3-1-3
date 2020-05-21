@@ -14,15 +14,12 @@ public class UserServiceImpl implements UserService {
     private final RoleService roleServiceImpl;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(
-            UserRepo userRepo,
-            RoleService roleServiceImpl,
-            PasswordEncoder passwordEncoder
-    ) {
+    public UserServiceImpl(UserRepo userRepo, RoleService roleServiceImpl, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.roleServiceImpl = roleServiceImpl;
         this.passwordEncoder = passwordEncoder;
     }
+
     @Override
     public void addUser(User user, List<Long> roleIds) {
         user.setRoles(roleServiceImpl.getRolesByIds(roleIds));

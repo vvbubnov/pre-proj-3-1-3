@@ -1,41 +1,35 @@
 <!DOCTYPE html>
-<html th:replace="~{layouts/default :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 
 <section>
 
-    <div th:insert="fragments/common.html :: topInfoPanel"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="topInfoPanel">
+
+    </nav>
 
     <div class="container-fluid">
         <div class="row">
 
             <div class="col-lg-2">
-                <div class="btn-group-vertical btn-group-sm btn-block" style="font-size: x-small">
-                    <button class="btn btn-primary" type="button">
-                        <a class="nav-link bg-primary text-white text-left" href="/admin">
-                            Admin
-                        </a>
-                    </button>
-                    <button class="btn btn-white text-left" type="button">
-                        <a class="nav-link" href="/user">
-                            User
-                        </a>
-                    </button>
+                <div class="btn-group-vertical btn-group-sm btn-block" style="font-size: x-small" id="sideNavPanel">
+
                 </div>
             </div>
 
             <div class="col-lg-10">
                 <div class="row">
                     <div class="text-body">
-                        <h2>Admin panel</h2>
+                        <h2 id="pageTitle">Admin panel</h2>
                     </div>
                 </div>
 
@@ -112,17 +106,17 @@
                                                    placeholder="Carma"
                                                    type="number">
                                             <span><b>Roles:</b></span>
-                                            <div class="form-group text-left">
-                                                <div class="form-check" th:each="role : ${possibleRoles}">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                           id="defaultCheck1"
-                                                           th:value="${role.id}"
-                                                           th:name="roleIdAdd"
-                                                           th:id="${role.roleName + 'add'}">
-                                                    <label class="form-check-label" for="defaultCheck1"
-                                                           th:text="${role.roleName}">
-                                                        Role
-                                                    </label>
+                                            <div class="form-group text-left" >
+                                                <div class="form-check" id="addFormRolesCheckBox">
+<!--                                                    <input class="form-check-input" type="checkbox" value=""-->
+<!--                                                           id="defaultCheck1"-->
+<!--                                                           th:value="${role.id}"-->
+<!--                                                           th:name="roleIdAdd"-->
+<!--                                                           th:id="${role.roleName + 'add'}">-->
+<!--                                                    <label class="form-check-label" for="defaultCheck1"-->
+<!--                                                           th:text="${role.roleName}">-->
+<!--                                                        Role-->
+<!--                                                    </label>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -199,7 +193,7 @@
     <!--  end of EDIT USER Bootstrap pop up modal-->
 
     <script src="scripts/crudActions.js"></script>
-
+    <script src="scripts/pageParts.js"></script>
 </section>
 
 </body>

@@ -16,40 +16,23 @@ import java.util.List;
 @RequestMapping("/")
 public class MainController {
 
-    private final UserService userServiceImpl;
-    private final RoleService roleServiceImpl;
-
-    public MainController(UserService userServiceImpl, RoleService roleServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
-        this.roleServiceImpl = roleServiceImpl;
-    }
-
     @GetMapping("login")
     public String loginPage() {
         return "login";
     }
 
     @GetMapping("/")
-    public String printIndex(ModelMap modelMap, String statusMessage) {
+    public String printIndex() {
         return "index";
     }
 
     @GetMapping("user")
-    public String userPage(ModelMap modelMap) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = (User) authentication.getPrincipal();
-        modelMap.addAttribute("loggedUser", principal);
-        modelMap.addAttribute("statusMessage", "All correct");
+    public String userPage() {
         return "userPage";
     }
 
     @GetMapping("admin")
-    public String adminPage(ModelMap modelMap) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = (User) authentication.getPrincipal();
-        modelMap.addAttribute("loggedUser", principal);
-        modelMap.addAttribute("users", userServiceImpl.getAllUsers());
-        modelMap.addAttribute("possibleRoles", roleServiceImpl.getAllRoles());
+    public String adminPage() {
         return "adminPage";
     }
 

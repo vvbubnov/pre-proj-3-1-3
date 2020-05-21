@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     fillOutTableRows();
 
     let modalWindow = $('#editUser');
@@ -17,6 +18,7 @@ $(document).ready(function () {
         });
 
         let newUser = {
+
             login: document.getElementById('loginAdd').value,
             password: document.getElementById('passwordAdd').value,
             name: document.getElementById('nameAdd').value,
@@ -132,7 +134,6 @@ $(document).ready(function () {
 
                 rolesCheckbox.empty();
                 let userRoles = user.roles;
-                console.log(userRoles);
 
                 // TODO монструонзое заполнение checkbox-ов. подумать как можно по-лучше
                 let rolesArr = [];
@@ -182,7 +183,7 @@ function fillOutTableRows() {
 
     $.get('/rest/admin/users', function (users) {
         for (let i in users) {
-            let userRoles = rolesAsString(users[i].roles);
+            let userRolesStr = rolesAsString(users[i].roles);
             tableRows.append(
                 `<tr>
                 <td>${users[i].id}</td>
@@ -191,7 +192,7 @@ function fillOutTableRows() {
                 <td>${users[i].name}</td>
                 <td>${users[i].fathersName}</td>
                 <td>${users[i].carma}</td>
-                <td>${userRoles}</td>
+                <td>${userRolesStr}</td>
                 <td><button class="btn btn-primary" data-target="#editUser" id="editBtn" data-toggle="modal" 
                 data-id=${users[i].id} data-del="false" type="button">Edit</button></td>
                 <td><button class="btn btn-danger " data-target="#editUser" id="deleteBtn" data-toggle="modal" 
@@ -209,4 +210,3 @@ function fillOutTableRows() {
         return resultString;
     }
 }
-
