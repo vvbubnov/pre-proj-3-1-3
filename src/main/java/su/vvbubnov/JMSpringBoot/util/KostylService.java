@@ -30,4 +30,15 @@ public class KostylService {
             .getAuthentication()
             .getPrincipal();
     }
+
+    /**
+     * Отвечает на вопрос является ли залогиненный юзер админом
+     * */
+    public static boolean isAdmin() {
+        return getPrincipal()
+                .getRoles()
+                .stream()
+                .map(Role::getId)
+                .anyMatch(roleId -> roleId == 1);
+    }
 }
