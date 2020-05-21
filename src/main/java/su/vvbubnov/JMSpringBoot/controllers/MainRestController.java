@@ -1,8 +1,6 @@
 package su.vvbubnov.JMSpringBoot.controllers;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import su.vvbubnov.JMSpringBoot.models.Role;
 import su.vvbubnov.JMSpringBoot.models.User;
@@ -63,11 +61,7 @@ public class MainRestController {
 
     @GetMapping("/isAdmin")
     public boolean isAdmin() {
-        return KostylService.getPrincipal()
-                .getRoles()
-                .stream()
-                .map(Role::getId)
-                .anyMatch(roleId -> roleId == 1);
+        return KostylService.isAdmin();
     }
 
 }
